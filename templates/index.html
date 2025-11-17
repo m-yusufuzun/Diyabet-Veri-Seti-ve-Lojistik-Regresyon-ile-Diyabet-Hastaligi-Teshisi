@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Diyabet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            background-color: #fff;
+            z-index: 1000;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            transition: color 0.3s;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group .lbl {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+            transition: color 0.3s;
+        }
+        .form-group .inp {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .btn-submit {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .result.positive {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .result.negative {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.dark-mode #theme-toggle {
+            background-color: #333;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+        body.dark-mode .container {
+            background-color: #1e1e1e;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+        }
+        body.dark-mode h1,
+        body.dark-mode .form-group label,
+        body.dark-mode footer {
+            color: #e0e0e0;
+        }
+        body.dark-mode .form-group input {
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #555;
+        }
+        body.dark-mode .btn-submit {
+            background-color: #0056b3;
+        }
+        body.dark-mode .btn-submit:hover {
+            background-color: #007BFF;
+        }
+        body.dark-mode p {
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <button id="theme-toggle">Koyu Mod</button>
+
+    <div class="container">
+        <h1>Dr. Diyabet</h1>
+        <p>Lütfen formu doldurunuz. Bu model prototip ve test amaçlıdır. Doğru sonuçlar için bir sağlık kuruluşuna başvurun!</p>
+
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label class="lbl" for="pregnancies">Hamilelik Sayınız:</label>
+                <input class="inp" type="number" id="pregnancies" name="pregnancies" value="0" required>
+            </div>
+            <div class="form-group">
+                <label class="lbl" for="glucose">Glikoz Değeriniz:</label>
+                <input class="inp" type="number" step="any" id="glucose" name="glucose" value="120" required>
+            </div>
+            <div class="form-group">
+                <label class="lbl" for="bloodpressure">Kan Basıncınız: (mm Hg)</label>
+                <input class="inp" type="number" step="any" id="bloodpressure" name="bloodpressure" value="70" required>
+            </div>
+            <div class="form-group">
+                <label class="lbl" for="skinthickness">Cilt Kalınlığınız (mm)</label>
+                <input class="inp" type="number" step="any" id="skinthickness" name="skinthickness" value="20" required>
+            </div>
+            <div class="form-group">
+                <label class="lbl" for="insulin">İnsülin Değeriniz (mu U/ml)</label>
+                <input class="inp" type="number" step="any" id="insulin" name="insulin" value="80" required>
+            </div>
+            <div class="form-group">
+                <label class="lbl" for="bmi">Vücut Kitle İndeksi (BMI)</label>
+                <input class="inp" type="number" step="any" id="bmi" name="bmi" value="32.0" required>
+            </div>
+            <div class="form-group">
+                <label class="lbl" for="dpf">Ailenizde diyabet hastası var mı?</label>
+        <div>
+            <label for="dpf1">Evet</label>
+             <input type="radio" id="dpf1" name="dpf" value="1">
+             <label for="dpf">Hayır</label>
+             <input type="radio" id="dpf" name="dpf" value="0" checked>
+            </div>
+            </div>
+            <div class="form-group">
+                <label class="lbl" for="age">Yaşınız?</label>
+                <input class="inp" type="number" id="age" name="age" value="33" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Sonucu Gör</button>
+        </form>
+
+        {% if result %}
+            <div class="result {{ 'positive' if 'Bulunmaktadır' in result else 'negative' }}">
+                {{ result }}
+            </div>
+        {% endif %}
+<footer>
+    YF Code &copy; 2025
+</footer>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = 'Açık Mod';
+            } else {
+                themeToggle.textContent = 'Koyu Mod';
+            }
+        });
+    </script>
+
+</body>
+</html>
