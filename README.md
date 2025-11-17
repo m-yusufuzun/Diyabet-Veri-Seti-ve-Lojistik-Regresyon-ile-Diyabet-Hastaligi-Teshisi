@@ -90,11 +90,11 @@ Modelin test verisi üzerindeki performansı şu şekildedir:
 
 ### ✅ - Diyabet Hastalığı Bulunmayan Durum
 
-![Code Flow Part 1](https://github.com/user-attachments/assets/ce11a170-f907-4859-b11c-f55215a50fe4) 
+<img src="https://github.com/user-attachments/assets/ce11a170-f907-4859-b11c-f55215a50fe4" width="500">
 
 ### ❎ - Diyabet Hastalığı Bulunan Durum
 
-![Code Flow Part 2 & Terminal Output](https://github.com/user-attachments/assets/f6129f51-0a8f-4fd7-bcb1-3a09af606068)
+<img src="https://github.com/user-attachments/assets/f6129f51-0a8f-4fd7-bcb1-3a09af606068" width="500">
 
 ---
 
