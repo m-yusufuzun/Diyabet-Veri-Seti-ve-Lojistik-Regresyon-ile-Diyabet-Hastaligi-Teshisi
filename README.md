@@ -105,7 +105,7 @@ Bu projeyi kendi bilgisayarınızda kurmak ve çalıştırmak için aşağıdaki
 1.  **Depoyu Klonlayın:**
     ```bash
     git clone https://github.com/m-yusufuzun/Diyabet-Veri-Seti-ve-Lojistik-Regresyon-ile-Diyabet-Hastaligi-Teshisi.git
-    cd Diyabet-Veri-Seti-ve-Lojistik-Regresyon-ile-Diyabet-Hastaligi-Teshisi.git
+    cd Diyabet-Veri-Seti-ve-Lojistik-Regresyon-ile-Diyabet-Hastaligi-Teshisi
     ```
 
 2.  **Gerekli Kütüphaneleri Yükleyin:**
